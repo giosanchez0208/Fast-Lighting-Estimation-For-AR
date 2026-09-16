@@ -11,6 +11,10 @@
 
 **Have you ever played an augmented reality game like Pokémon GO and thought: can you imagine if it understood the lighting?** A Pokémon on your desk would be lit by the same lamp as the mug next to it, from the same side, in the same warm colour. That thought is what started this project, and it's where FLEA comes in.
 
+![From a photo to a lit object](figures/process.png)
+
+FLEA looks at the scene with the ball edited out and returns twelve numbers in 2.1 ms. A ball rendered under those numbers goes where the real one was, and the real ball is on the right for comparison.
+
 ---
 
 ## The problem
