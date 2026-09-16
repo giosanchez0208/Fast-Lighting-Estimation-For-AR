@@ -59,11 +59,17 @@ So I rendered the training data instead. When the renderer lights a scene, it kn
 
 Rendered frames only get you so far, so half of every training batch is real: 7,105 photographs of everyday scenes, labelled by an earlier version of FLEA. Not one training image carries a measured lighting label.
 
+![How FLEA learns](figures/training.png)
+
+Training compares pictures as well as numbers. For every frame, a grey sphere is lit once by FLEA's twelve numbers and once by the true ones, and the difference between the two renders is what training shrinks. Two different sets of lights that make the sphere look the same count as equally right, which a comparison of the numbers alone would get wrong.
+
 ---
 
 ## Summary
 
 FLEA looks at one camera frame and returns those twelve numbers. They're the same vocabulary a game engine already uses, so the output lights a virtual object directly.
+
+![Frame in, twelve numbers out](figures/model.png)
 
 The network is a MobileNetV3-Small with a regression head, **1.08M parameters and a 4.1 MB file.** Exported to ONNX, it goes from a camera frame to the lights in **2.1 ms on a single laptop CPU core**, and runs in **8.5 ms inside a browser tab.**
 
