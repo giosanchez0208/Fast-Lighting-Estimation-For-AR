@@ -1,0 +1,20 @@
+Copyright (c) 2026 Gio Sanchez
+
+FLEA is licensed under the Creative Commons Attribution-NonCommercial 4.0
+International License (CC BY-NC 4.0). This covers the source code, the trained
+model weights, the figures and the documentation published with it.
+
+You may copy, redistribute, adapt and build upon this work for non-commercial
+purposes, provided you give appropriate credit, link to the license and indicate
+if changes were made. Commercial use requires written permission from the
+copyright holder. This summary does not replace the license text, which governs:
+
+https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+
+Third-party material
+
+The rubber duck in the browser demo is Rubber Duck Toy by Plat251, from Poly
+Haven (https://polyhaven.com/a/rubber_duck_toy), released under CC0 1.0 and not
+covered by this license. Its base colour texture was recoloured yellow for the
+demo.

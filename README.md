@@ -9,6 +9,8 @@
 | **52.2%** of a real ball's shading reproduced | from phone photos; the best constant manages 29.2% |
 | **0** measured lighting labels | trained on rendered scenes and real photos it labelled itself |
 
+**[Try the live demo](https://huggingface.co/spaces/giosanchez0208/fast-lighting-estimation-for-ar).** Point your camera at a room, or upload a photo, and a rubber duck takes on its lighting, entirely inside your browser.
+
 **Have you ever played an augmented reality game like Pokémon GO and thought: can you imagine if it understood the lighting?** A Pokémon on your desk would be lit by the same lamp as the mug next to it, from the same side, in the same warm colour. That thought is what started this project, and it's where FLEA comes in.
 
 ![From a photo to a lit object](figures/process.png)
@@ -38,6 +40,8 @@ It is. FLEA describes all of it with twelve numbers, three lights' worth:
 | back | direction (3 numbers), intensity, colour temperature | light from behind, which draws a bright rim along the edge |
 
 That's 2 + 5 + 5. The three intensities are shares of the total light, because a photo's auto-exposure hides how bright the room really is. Every scene FLEA looks at, from a sunny park to a desk lamp, comes out as those twelve values.
+
+**Why three numbers for a direction, when a light circling an object only moves two ways?** Two is all it needs. A direction is an arrow of length one from the object toward the light, written as x (right), y (up) and z (toward the camera). Fixing the length at one leaves two degrees of freedom, the same two a point on a globe has. The catch is that two-number descriptions of a sphere tear somewhere. Longitude jumps from +180° to −180° behind the object and means nothing straight overhead, so two lights 2° apart on either side of that seam would score as 358° apart, and training would punish answers that are right. Three numbers scaled back to length one have no seam anywhere, and they're the form a shader takes a light's direction in anyway. The intensities work the same way: they're shares that add up to 100%, so the third follows from the other two. Twelve numbers carry nine independent values.
 
 ![A sphere under each light's numbers](figures/lights.gif)
 
@@ -154,7 +158,7 @@ FLEA needs a camera frame and nothing else: no AR session and no platform API. T
 
 ## About this repository
 
-The implementation, the training pipeline and the trained weights are private for now while I prepare the work for publication. I'm happy to walk through them.
+The implementation and the training pipeline are private for now while I prepare the work for publication. I'm happy to walk through them. The trained model itself runs in the [browser demo](https://huggingface.co/spaces/giosanchez0208/fast-lighting-estimation-for-ar).
 
 Two small, self-contained pieces are here:
 
@@ -192,4 +196,4 @@ Two small, self-contained pieces are here:
 
 ## License
 
-All rights reserved. The two files in `flea/` are here to read.
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). You can share and adapt FLEA for non-commercial purposes with credit. Commercial use needs my permission. See [LICENSE](LICENSE).
